@@ -2,7 +2,7 @@
 
 **Live Demo:** [https://adityalallchandani.github.io/sih2025/](https://adityalallchandani.github.io/sih2025/)
 
-**Video Explanation:** [https://www.youtube.com/your_project_video](https://www.youtube.com/your_project_video)
+**Video Explanation:** [https://youtu.be/Lcn4XpveWIQ](https://youtu.be/Lcn4XpveWIQ)
 
 **Repository:** [https://github.com/AdityaLallchandani/sih2025](https://github.com/AdityaLallchandani/sih2025)
 
