@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Government Education Information Search</title>
+    <style>
+      :root {
+        /* Primitive Color Tokens */
+        --color-white: rgba(255, 255, 255, 1);
+        --color-black: rgba(0, 0, 0, 1);
+        --color-cream-50: rgba(252, 252, 249, 1);
+        --color-cream-100: rgba(255, 255, 253, 1);
+        --color-gray-200: rgba(245, 245, 245, 1);
+        --color-gray-300: rgba(167, 169, 169, 1);
+        --color-gray-400: rgba(119, 124, 124, 1);
+        --color-slate-500: rgba(98, 108, 113, 1);
+        --color-brown-600: rgba(94, 82, 64, 1);
+        --color-charcoal-700: rgba(31, 33, 33, 1);
+        --color-charcoal-800: rgba(38, 40, 40, 1);
+        --color-slate-900: rgba(19, 52, 59, 1);
+        --color-teal-300: rgba(50, 184, 198, 1);
+        --color-teal-400: rgba(45, 166, 178, 1);
+        --color-teal-500: rgba(33, 128, 141, 1);
+        --color-teal-600: rgba(29, 116, 128, 1);
+        --color-teal-700: rgba(26, 104, 115, 1);
+        --color-teal-800: rgba(41, 150, 161, 1);
+        --color-red-400: rgba(255, 84, 89, 1);
+        --color-red-500: rgba(192, 21, 47, 1);
+        --color-orange-400: rgba(230, 129, 97, 1);
+        --color-orange-500: rgba(168, 75, 47, 1);
+
+        /* RGB versions for opacity control */
+        --color-brown-600-rgb: 94, 82, 64;
+        --color-teal-500-rgb: 33, 128, 141;
+        --color-slate-900-rgb: 19, 52, 59;
+        --color-slate-500-rgb: 98, 108, 113;
+        --color-red-500-rgb: 192, 21, 47;
+        --color-red-400-rgb: 255, 84, 89;
+        --color-orange-500-rgb: 168, 75, 47;
+        --color-orange-400-rgb: 230, 129, 97;
+
+        /* Background color tokens (Light Mode) */
+        --color-bg-1: rgba(59, 130, 246, 0.08);
+        --color-bg-2: rgba(245, 158, 11, 0.08);
+        --color-bg-3: rgba(34, 197, 94, 0.08);
+        --color-bg-4: rgba(239, 68, 68, 0.08);
+        --color-bg-5: rgba(147, 51, 234, 0.08);
+        --color-bg-6: rgba(249, 115, 22, 0.08);
+        --color-bg-7: rgba(236, 72, 153, 0.08);
+        --color-bg-8: rgba(6, 182, 212, 0.08);
+
+        /* Semantic Color Tokens (Light Mode) */
+        --color-background: var(--color-cream-50);
+        --color-surface: var(--color-cream-100);
+        --color-text: var(--color-slate-900);
+        --color-text-secondary: var(--color-slate-500);
+        --color-primary: var(--color-teal-500);
+        --color-primary-hover: var(--color-teal-600);
+        --color-primary-active: var(--color-teal-700);
+        --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+        --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+        --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+        --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+        --color-btn-primary-text: var(--color-cream-50);
+        --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+        --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+        --color-error: var(--color-red-500);
+        --color-success: var(--color-teal-500);
+        --color-warning: var(--color-orange-500);
+        --color-info: var(--color-slate-500);
+        --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+        --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+        /* Common style patterns */
+        --focus-ring: 0 0 0 3px var(--color-focus-ring);
+        --focus-outline: 2px solid var(--color-primary);
+        --status-bg-opacity: 0.15;
+        --status-border-opacity: 0.25;
+
+        /* RGB versions for opacity control */
+        --color-success-rgb: 33, 128, 141;
+        --color-error-rgb: 192, 21, 47;
+        --color-warning-rgb: 168, 75, 47;
+        --color-info-rgb: 98, 108, 113;
+
+        /* Typography */
+        --font-family-base: "Inter", -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, sans-serif;
+        --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo,
+          Monaco, Consolas, monospace;
+        --font-size-xs: 11px;
+        --font-size-sm: 12px;
+        --font-size-base: 14px;
+        --font-size-md: 14px;
+        --font-size-lg: 16px;
+        --font-size-xl: 18px;
+        --font-size-2xl: 20px;
+        --font-size-3xl: 24px;
+        --font-size-4xl: 30px;
+        --font-weight-normal: 400;
+        --font-weight-medium: 500;
+        --font-weight-semibold: 550;
+        --font-weight-bold: 600;
+        --line-height-tight: 1.2;
+        --line-height-normal: 1.5;
+        --letter-spacing-tight: -0.01em;
+
+        /* Spacing */
+        --space-0: 0;
+        --space-1: 1px;
+        --space-2: 2px;
+        --space-4: 4px;
+        --space-6: 6px;
+        --space-8: 8px;
+        --space-10: 10px;
+        --space-12: 12px;
+        --space-16: 16px;
+        --space-20: 20px;
+        --space-24: 24px;
+        --space-32: 32px;
+
+        /* Border Radius */
+        --radius-sm: 6px;
+        --radius-base: 8px;
+        --radius-md: 10px;
+        --radius-lg: 12px;
+        --radius-full: 9999px;
+
+        /* Shadows */
+        --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04),
+          0 1px 2px rgba(0, 0, 0, 0.02);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04),
+          0 2px 4px -1px rgba(0, 0, 0, 0.02);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04),
+          0 4px 6px -2px rgba(0, 0, 0, 0.02);
+        --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+          inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+
+        /* Animation */
+        --duration-fast: 150ms;
+        --duration-normal: 250ms;
+        --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+
+        /* Layout */
+        --container-sm: 640px;
+        --container-md: 768px;
+        --container-lg: 1024px;
+        --container-xl: 1280px;
+      }
+
+      /* Dark mode colors */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --color-gray-400-rgb: 119, 124, 124;
+          --color-teal-300-rgb: 50, 184, 198;
+          --color-gray-300-rgb: 167, 169, 169;
+          --color-gray-200-rgb: 245, 245, 245;
+
+          --color-bg-1: rgba(29, 78, 216, 0.15);
+          --color-bg-2: rgba(180, 83, 9, 0.15);
+          --color-bg-3: rgba(21, 128, 61, 0.15);
+          --color-bg-4: rgba(185, 28, 28, 0.15);
+          --color-bg-5: rgba(107, 33, 168, 0.15);
+          --color-bg-6: rgba(194, 65, 12, 0.15);
+          --color-bg-7: rgba(190, 24, 93, 0.15);
+          --color-bg-8: rgba(8, 145, 178, 0.15);
+
+          --color-background: var(--color-charcoal-700);
+          --color-surface: var(--color-charcoal-800);
+          --color-text: var(--color-gray-200);
+          --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+          --color-primary: var(--color-teal-300);
+          --color-primary-hover: var(--color-teal-400);
+          --color-primary-active: var(--color-teal-800);
+          --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+          --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+          --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+          --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+          --color-error: var(--color-red-400);
+          --color-success: var(--color-teal-300);
+          --color-warning: var(--color-orange-400);
+          --color-info: var(--color-gray-300);
+          --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+          --color-btn-primary-text: var(--color-slate-900);
+          --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+          --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+          --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+          --color-select-caret: rgba(var(--color-gray-200-rgb), 0.8);
+
+          --color-success-rgb: var(--color-teal-300-rgb);
+          --color-error-rgb: var(--color-red-400-rgb);
+          --color-warning-rgb: var(--color-orange-400-rgb);
+          --color-info-rgb: var(--color-gray-300-rgb);
+        }
+      }
+
+      /* Base styles */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: var(--font-family-base);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-normal);
+        color: var(--color-text);
+        background-color: var(--color-background);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: var(--container-xl);
+        margin: 0 auto;
+        padding: var(--space-24) var(--space-16);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: var(--space-32);
+      }
+
+      .header h1 {
+        font-size: var(--font-size-3xl);
+        font-weight: var(--font-weight-bold);
+        margin: 0 0 var(--space-8) 0;
+        color: var(--color-text);
+      }
+
+      .header p {
+        font-size: var(--font-size-lg);
+        color: var(--color-text-secondary);
+        margin: 0;
+      }
+
+      .search-section {
+        margin-bottom: var(--space-24);
+        display: flex;
+        gap: var(--space-12);
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .search-input {
+        flex: 1;
+        min-width: 300px;
+        padding: var(--space-12) var(--space-16);
+        font-size: var(--font-size-base);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-base);
+        background-color: var(--color-surface);
+        color: var(--color-text);
+        transition: border-color var(--duration-fast) var(--ease-standard);
+      }
+
+      .search-input:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        box-shadow: var(--focus-ring);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-12) var(--space-16);
+        border-radius: var(--radius-base);
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-medium);
+        cursor: pointer;
+        transition: all var(--duration-normal) var(--ease-standard);
+        border: none;
+        text-decoration: none;
+      }
+
+      .btn--secondary {
+        background: var(--color-secondary);
+        color: var(--color-text);
+      }
+
+      .btn--secondary:hover {
+        background: var(--color-secondary-hover);
+      }
+
+      .results-info {
+        margin-bottom: var(--space-16);
+        font-size: var(--font-size-sm);
+        color: var(--color-text-secondary);
+      }
+
+      .table-container {
+        background: var(--color-surface);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--color-card-border);
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+      }
+
+      .table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .table th,
+      .table td {
+        padding: var(--space-12) var(--space-16);
+        text-align: left;
+        border-bottom: 1px solid var(--color-card-border-inner);
+        vertical-align: top;
+      }
+
+      .table th {
+        background-color: var(--color-bg-1);
+        font-weight: var(--font-weight-semibold);
+        font-size: var(--font-size-sm);
+        color: var(--color-text);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .table tr:hover {
+        background-color: var(--color-bg-2);
+      }
+
+      .table td {
+        font-size: var(--font-size-sm);
+        max-width: 200px;
+        word-wrap: break-word;
+      }
+
+      .table .url-column {
+        max-width: 150px;
+      }
+
+      .table .summary-column,
+      .table .notes-column {
+        max-width: 250px;
+      }
+
+      .table .keywords-column {
+        max-width: 180px;
+      }
+
+      .expandable-text {
+        max-height: 60px;
+        overflow: hidden;
+        position: relative;
+        transition: max-height var(--duration-normal) var(--ease-standard);
+      }
+
+      .expandable-text.expanded {
+        max-height: none;
+      }
+
+      .expand-btn {
+        background: var(--color-primary);
+        color: var(--color-btn-primary-text);
+        border: none;
+        border-radius: var(--radius-sm);
+        padding: var(--space-4) var(--space-8);
+        font-size: var(--font-size-xs);
+        cursor: pointer;
+        margin-top: var(--space-4);
+        transition: background-color var(--duration-fast) var(--ease-standard);
+      }
+
+      .expand-btn:hover {
+        background: var(--color-primary-hover);
+      }
+
+      .url-link {
+        color: var(--color-primary);
+        text-decoration: none;
+        word-break: break-all;
+      }
+
+      .url-link:hover {
+        color: var(--color-primary-hover);
+        text-decoration: underline;
+      }
+
+      .no-results {
+        text-align: center;
+        padding: var(--space-32);
+        color: var(--color-text-secondary);
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        padding: var(--space-4) var(--space-8);
+        border-radius: var(--radius-full);
+        font-weight: var(--font-weight-medium);
+        font-size: var(--font-size-xs);
+      }
+
+      .status--info {
+        background-color: rgba(var(--color-info-rgb), var(--status-bg-opacity));
+        color: var(--color-info);
+        border: 1px solid
+          rgba(var(--color-info-rgb), var(--status-border-opacity));
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: var(--space-16) var(--space-12);
+        }
+
+        .search-section {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .search-input {
+          min-width: auto;
+        }
+
+        .table-container {
+          overflow-x: auto;
+        }
+
+        .table {
+          min-width: 1000px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Government Education Information Search</h1>
+        <p>Search through educational government resources and agencies</p>
+      </div>
+
+      <div class="search-section">
+        <input
+          type="text"
+          id="searchInput"
+          class="search-input"
+          placeholder="Search by keywords, agency name, government level, notes, or any field..."
+          autocomplete="off"
+        />
+        <button class="btn btn--secondary" onclick="clearSearch()">
+          Clear
+        </button>
+      </div>
+
+      <div class="results-info">
+        <span id="resultsCount">Showing all records</span>
+      </div>
+
+      <div class="table-container">
+        <table class="table" id="dataTable">
+          <thead>
+            <tr>
+              <th>Country/Region</th>
+              <th>Government Level</th>
+              <th>Agency/Department</th>
+              <th>Page Name</th>
+              <th>URL</th>
+              <th>Primary Keywords</th>
+              <th>Summary</th>
+              <th>Language</th>
+              <th>Last Updated</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Table content will be populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <div id="noResults" class="no-results" style="display: none">
+        <p>
+          No results found for your search. Try different keywords or
+          <button class="btn btn--secondary" onclick="clearSearch()">
+            clear the search
+          </button>
+          to view all records.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Sample education data - replace this with actual data from education_data.json
+      const educationData = [
+        {
+          "Country/Region": "India",
+          "Government Level": "National",
+          "Agency/Department Name":
+            "Ministry of Education (Department of Higher Education)",
+          "Page Name": "Department of Higher Education",
+          URL: "education.gov.in/en/higher_education",
+          "Primary Keywords (comma-separated)":
+            "higher education, policy, universities, statistics, AISHE",
+          "Two-sentence Summary":
+            "Oversees higher education policy, planning, and programmes across India. Publishes surveys, schemes, and resources for universities, colleges, policymakers, and researchers.",
+          Language: "English",
+          "Last Updated": "—",
+          Notes: "Main departmental page for higher education.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "National",
+          "Agency/Department Name": "SWAYAM (Ministry of Education initiative)",
+          "Page Name": "Swayam Central",
+          URL: "swayam.gov.in",
+          "Primary Keywords (comma-separated)":
+            "MOOC, online courses, NPTEL, credits, certification",
+          "Two-sentence Summary":
+            "Government-hosted MOOC platform offering courses from secondary to postgraduate level. Provides free, credit-eligible courses and certifications for learners and professionals.",
+          Language: "English",
+          "Last Updated": "—",
+          Notes: "Core national e-learning platform.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "National",
+          "Agency/Department Name": "DIKSHA (NCERT / Ministry of Education)",
+          "Page Name": "DIKSHA - National Digital Infrastructure for Teachers",
+          URL: "diksha.gov.in",
+          "Primary Keywords (comma-separated)":
+            "teacher training, OER, school curriculum, multilingual, learning resources",
+          "Two-sentence Summary":
+            "Digital platform offering educational resources and teacher training materials. Serves students, teachers, and parents with multilingual content and analytics.",
+          Language: "English, Indian languages",
+          "Last Updated": "—",
+          Notes: "Maintained under NCERT / MoE.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "National",
+          "Agency/Department Name":
+            "AISHE (All India Survey on Higher Education)",
+          "Page Name": "Homepage",
+          URL: "aishe.gov.in",
+          "Primary Keywords (comma-separated)":
+            "higher education survey, statistics, institutions, enrollment, data",
+          "Two-sentence Summary":
+            "Annual web-based survey collecting data on higher education institutions, enrollment, faculty, and infrastructure. Provides datasets and reporting tools for policymakers and researchers.",
+          Language: "English",
+          "Last Updated": "—",
+          Notes: "Hosted on NIC.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "National",
+          "Agency/Department Name": "NCERT / CIET",
+          "Page Name": "ePathshala",
+          URL: "epathshala.nic.in",
+          "Primary Keywords (comma-separated)":
+            "e-textbooks, digital resources, NCERT, students, teachers",
+          "Two-sentence Summary":
+            "Provides digital textbooks, audio/video resources, and supplementary materials aligned to NCERT curricula. Supports access to resources via web and mobile.",
+          Language: "English, Hindi, regional languages",
+          "Last Updated": "—",
+          Notes: "Official NCERT portal.",
+        },
+        {
+          "Country/Region": "United States",
+          "Government Level": "National",
+          "Agency/Department Name": "U.S. Department of Education",
+          "Page Name": "U.S. Department of Education: Home",
+          URL: "ed.gov",
+          "Primary Keywords (comma-separated)":
+            "federal education policy, student loans, grants, research, equity",
+          "Two-sentence Summary":
+            "Sets federal education policy, manages student aid programs, and publishes guidance for institutions. Offers resources for students, educators, and policymakers.",
+          Language: "English",
+          "Last Updated": "—",
+          Notes: "Includes links to Federal Student Aid.",
+        },
+        {
+          "Country/Region": "United Kingdom (England)",
+          "Government Level": "National",
+          "Agency/Department Name": "Department for Education (DfE)",
+          "Page Name": "Department for Education",
+          URL: "gov.uk/department-for-education",
+          "Primary Keywords (comma-separated)":
+            "schools, early years, higher education, apprenticeships, standards",
+          "Two-sentence Summary":
+            "Responsible for children’s services, schooling, and skills policy in England. Provides guidance, statistics, and services for schools, teachers, and parents.",
+          Language: "English",
+          "Last Updated": "—",
+          Notes: "England-focused; devolved education in UK.",
+        },
+        {
+          "Country/Region": "Australia",
+          "Government Level": "National",
+          "Agency/Department Name":
+            "Department of Education (Australian Government)",
+          "Page Name": "Department of Education - Home",
+          URL: "education.gov.au",
+          "Primary Keywords (comma-separated)":
+            "early childhood, schooling, higher education, research, international education",
+          "Two-sentence Summary":
+            "Provides national leadership and programs across education sectors. Offers data, consultations, and program information for institutions and students.",
+          Language: "English",
+          "Last Updated": "20-Oct-25",
+          Notes: "Displays “Last modified” date.",
+        },
+        {
+          "Country/Region": "Germany",
+          "Government Level": "National",
+          "Agency/Department Name":
+            "Federal Ministry of Education and Research (BMBF)",
+          "Page Name": "Federal Ministry of Education and Research - Home",
+          URL: "bmbf.de/EN/Home",
+          "Primary Keywords (comma-separated)":
+            "education research, higher education funding, vocational training, R&D, programmes",
+          "Two-sentence Summary":
+            "Federal ministry responsible for education policy, research funding, and vocational training. Publishes programs, policy documents, and funding opportunities.",
+          Language: "English, German",
+          "Last Updated": "—",
+          Notes: "English-language entry point.",
+        },
+        {
+          "Country/Region": "Japan",
+          "Government Level": "National",
+          "Agency/Department Name":
+            "Ministry of Education, Culture, Sports, Science and Technology (MEXT)",
+          "Page Name":
+            "MEXT : Ministry of Education, Culture, Sports, Science and Technology - EN",
+          URL: "mext.go.jp/en",
+          "Primary Keywords (comma-separated)":
+            "education policy, higher education, scholarships, international students, research",
+          "Two-sentence Summary":
+            "Formulates national policy in education, culture, sports, and science. Offers scholarship programs and research collaboration resources.",
+          Language: "English, Japanese",
+          "Last Updated": "—",
+          Notes: "English portal used for accessibility.",
+        },
+        {
+          "Country/Region": "Brazil",
+          "Government Level": "National",
+          "Agency/Department Name": "Ministério da Educação (MEC)",
+          "Page Name": "Ministério da Educação - Portal Gov.br",
+          URL: "gov.br/mec",
+          "Primary Keywords (comma-separated)":
+            "educational programmes, policy, teacher registration, higher education, funding",
+          "Two-sentence Summary":
+            "Provides information on education policies, services, and programs. Publishes data and services for students, teachers, and institutions.",
+          Language: "Portuguese",
+          "Last Updated": "—",
+          Notes: "Official portal on gov.br.",
+        },
+        {
+          "Country/Region": "South Africa",
+          "Government Level": "National",
+          "Agency/Department Name": "Department of Basic Education (DBE)",
+          "Page Name": "National Department of Basic Education > Home",
+          URL: "education.gov.za",
+          "Primary Keywords (comma-separated)":
+            "basic education, curriculum, study guides, learners, teachers",
+          "Two-sentence Summary":
+            "Oversees primary and secondary education policy and curriculum. Offers study guides and resources for learners and teachers.",
+          Language: "English, Afrikaans, isiZulu, others",
+          "Last Updated": "—",
+          Notes: "National DBE portal.",
+        },
+        {
+          "Country/Region": "Canada (Ontario)",
+          "Government Level": "Province",
+          "Agency/Department Name": "Ministry of Education (Ontario)",
+          "Page Name": "Ministry of Education - Ontario.ca",
+          URL: "ontario.ca/page/ministry-education",
+          "Primary Keywords (comma-separated)":
+            "elementary education, secondary education, curriculum, childcare, policy",
+          "Two-sentence Summary":
+            "Administers elementary and secondary education and childcare policy in Ontario. Provides program direction and reports for schools and parents.",
+          Language: "English, French",
+          "Last Updated": "24-Apr-18",
+          Notes: "Provincial-level ministry.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "General Education Department, Government of Kerala",
+          "Page Name": "General Education Department – Kerala",
+          URL: "https://www.education.kerala.gov.in/ (Department of School Education)",
+          "Primary Keywords (comma-separated)":
+            "school education, higher secondary, curriculum, teacher training, ICT initiatives",
+          "Two-sentence Summary":
+            "The Department oversees school and higher secondary education in Kerala, including curriculum development, teacher training and ICT-enabled learning. It serves students, teachers and educational institutions across the state.",
+          Language: "English, Malayalam",
+          "Last Updated": "—",
+          Notes: "Captures the state-level education portal for Kerala.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Ministry of School Education and Literacy, Government of Tamil Nadu",
+          "Page Name": "Education Department – Tamil Nadu",
+          URL: "http://tnschools.gov.in (Department of School Education)",
+          "Primary Keywords (comma-separated)":
+            "school education, state board, assessment, enrolment, student affairs",
+          "Two-sentence Summary":
+            "Tamil Nadu’s department for schooling provides policy direction, resources and oversight for elementary to higher secondary education, including enrolment drives and board assessments. It supports students, parents, schools and teachers in the state.",
+          Language: "English, Tamil",
+          "Last Updated": "—",
+          Notes: "Uses canonical departmental URL from state portal directory.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "School Education & Sports Department, Government of Maharashtra",
+          "Page Name":
+            "Maharashtra Education Department – School Education & Sports",
+          URL: "https://beed.gov.in/en/education-department/ (beed.gov.in)",
+          "Primary Keywords (comma-separated)":
+            "school education, junior college, online admissions, sports education, enrolment",
+          "Two-sentence Summary":
+            "The department manages schooling and sports education in Maharashtra including junior college admissions via online portals and policy oversight of secondary education institutions. It provides resources to students, schools and sports programs.",
+          Language: "English, Marathi",
+          "Last Updated": "—",
+          Notes:
+            "The URL is a district-site but part of the state departmental domain; note region specific.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "School Education Department, Government of Gujarat",
+          "Page Name": "Education Department – Gujarat",
+          URL: "https://www.education.gov.in/en/gujarat (Education Ministry of India)",
+          "Primary Keywords (comma-separated)":
+            "school education, higher education policy, NEP-2020 implementation, scholarships, digital infrastructure",
+          "Two-sentence Summary":
+            "Gujarat’s state education department drives schooling policy, scholarship schemes and NEP-2020 alignment, providing digital tools and resources for students, institutions and administrators.",
+          Language: "English, Gujarati",
+          "Last Updated": "—",
+          Notes:
+            "The site is via central ministry but links to state efforts; further specific departmental portal may be used in future.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "School Education Department, Government of West Bengal",
+          "Page Name": "Banglar Shiksha – School Education Portal",
+          URL: "https://banglarshiksha.gov.in/ (Banglar Shiksha)",
+          "Primary Keywords (comma-separated)":
+            "school data management, enrolment, teacher data, online services, student information system",
+          "Two-sentence Summary":
+            "Banglar Shiksha is the state-managed education portal of West Bengal offering digital services, student data systems and tools for tracking enrollment, teacher deployment and curriculum resources for schools in the state.",
+          Language: "English, Bengali",
+          "Last Updated": "—",
+          Notes: "State-level dedicated portal for school education.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Andhra Pradesh – Department of School Education",
+          "Page Name": "Samagra Shiksha Andhra Pradesh",
+          URL: "https://samagrashiksha.ap.gov.in/ (samagrashiksha.ap.gov.in)",
+          "Primary Keywords (comma-separated)":
+            "school education, infrastructure, student enrolment, RTE, teacher transfers",
+          "Two-sentence Summary":
+            "The Samagra Shiksha portal is run by the Andhra Pradesh School Education Department and integrates school-level schemes, infrastructure, teacher deployment, and student data. It serves administrators, teachers, students, and parents with reports, applications, and resource links.",
+          Language: "English, Telugu",
+          "Last Updated": "—",
+          Notes: "Official state-level school education scheme site.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Andhra Pradesh – Department of School Education",
+          "Page Name": "PM SHRI Samagra Shiksha Projects",
+          URL: "https://schoolinfra.ap.gov.in/samagraworks/ (schoolinfra.ap.gov.in)",
+          "Primary Keywords (comma-separated)":
+            "school infrastructure, PM SHRI, quality schools, works, funding",
+          "Two-sentence Summary":
+            "This portal specifically lists infrastructure works under PM SHRI (School Reform) in Andhra Pradesh, detailing sanctioned works and funding for developing quality school buildings. It’s intended for administrators, planners, and public accountability.",
+          Language: "English",
+          "Last Updated": "—",
+          Notes:
+            "Infrastructure-specific subportal under school education department.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Karnataka – Department of School Education",
+          "Page Name": "School Education – Karnataka Government",
+          URL: "https://schooleducation.karnataka.gov.in/en (School Education Karnataka)",
+          "Primary Keywords (comma-separated)":
+            "primary education, secondary education, curriculum, teacher training, teacher eligibility",
+          "Two-sentence Summary":
+            "Karnataka’s School Education Department website provides policy, teacher eligibility (KARTET), curriculum resources, and administrative support for schools across the state. The site caters to teachers, students, parents, and educational administrators.",
+          Language: "English, Kannada",
+          "Last Updated": "—",
+          Notes: "Official state-school education site.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Haryana – Directorate of Secondary / School Education",
+          "Page Name": "School Education Haryana",
+          URL: "https://schooleducationharyana.gov.in/ (schooleducationharyana.gov.in)",
+          "Primary Keywords (comma-separated)":
+            "secondary education, primary education, digital-learning, e-learning, school system",
+          "Two-sentence Summary":
+            "The Haryana School Education Department portal offers information on secondary and primary education, teaching resources, e-learning, student services, and administrative tools. It supports teachers, students, school administrators, and policymakers.",
+          Language: "English, Hindi",
+          "Last Updated": "Oct 24, 2025 (schooleducationharyana.gov.in)",
+          Notes:
+            "Managed by Directorate of School Education, with live MIS links.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Haryana – Department of Elementary Education",
+          "Page Name": "Elementary Education, Haryana",
+          URL: "http://harprathmik.gov.in/ (harprathmik.gov.in)",
+          "Primary Keywords (comma-separated)":
+            "elementary education, teacher training, inclusive education, RTE, district schools",
+          "Two-sentence Summary":
+            "The Haryana Department of Elementary Education oversees primary schooling, teacher training, inclusive education programs, and compliance with the RTE Act across the state. It provides policies, news, and administrative directives for primary-level schools.",
+          Language: "English, Hindi",
+          "Last Updated": "—",
+          Notes: "Official primary education department site.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Department of School & Mass Education, Government of Odisha",
+          "Page Name": "Department of School & Mass Education – Odisha",
+          URL: "https://sme.odisha.gov.in/ (sme.odisha.gov.in)",
+          "Primary Keywords (comma-separated)":
+            "elementary education, secondary education, teacher training, computer education, inclusive education",
+          "Two-sentence Summary":
+            "The Department of School & Mass Education in Odisha manages elementary and secondary schooling, teacher training and computer education programmes across the state. It serves students, teachers and school administrators with digital services, policy documents and admissions information.",
+          Language: "English, Odia",
+          "Last Updated": "—",
+          Notes: "State-level school education portal for Odisha.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Higher Education Department, Government of Odisha",
+          "Page Name": "Higher Education Department – Odisha",
+          URL: "https://dhe.odisha.gov.in/ (dhe.odisha.gov.in)",
+          "Primary Keywords (comma-separated)":
+            "higher education, university list, scholarships, admissions, research",
+          "Two-sentence Summary":
+            "Odisha’s Higher Education Department organises university policies, admissions, scholarships and infrastructure development for higher education in the state. It supports students, faculty and institutions with regulatory and developmental resources.",
+          Language: "English, Odia",
+          "Last Updated": "—",
+          Notes: "Complementary to school education dept; both state-level.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Department of School Education, Government of Punjab",
+          "Page Name": "Department of School Education – Punjab",
+          URL: "https://www.punjab.gov.in/government/departments/department-of-school-education/ (Punjab Government)",
+          "Primary Keywords (comma-separated)":
+            "primary education, secondary education, digital learning, teacher resources, e-services",
+          "Two-sentence Summary":
+            "The Punjab School Education Department oversees primary and secondary education across the state and provides digital services, teacher training and administrative tools for schools. It supports students, parents, teachers and schools with online systems and policy updates.",
+          Language: "English, Punjabi",
+          "Last Updated": "—",
+          Notes: "Official department page in Punjab; state-level.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Education Department, Government of Rajasthan",
+          "Page Name": "Education Department – Rajasthan",
+          URL: "http://www.education.rajasthan.gov.in/content/raj/education/en/home.html (Department of School Education)",
+          "Primary Keywords (comma-separated)":
+            "school education, curriculum, digital classrooms, teacher training, assessment",
+          "Two-sentence Summary":
+            "Rajasthan’s Education Department manages schooling policy, digital classroom implementation, curriculum and teacher professional development across the state. It offers resources and support for schools, students and educators.",
+          Language: "English, Hindi",
+          "Last Updated": "—",
+          Notes: "State-level portal for Rajasthan.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Ministry of Education & Literacy, Government of Tamil Nadu (School Education)",
+          "Page Name": "Education Department – Tamil Nadu",
+          URL: "http://tnschools.gov.in/",
+          "Primary Keywords (comma-separated)":
+            "school education, state board curriculum, assessments, student registration, teacher development",
+          "Two-sentence Summary":
+            "Tamil Nadu’s School Education Department provides oversight and resources for elementary to higher secondary education, including student registration portals, curriculum guidelines and teacher development programmes. It serves schools, administrators, students, and parents throughout the state.",
+          Language: "English, Tamil",
+          "Last Updated": "—",
+          Notes:
+            "State-specific portal for Tamil Nadu schooling (distinct from earlier national entry).",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Department of School & Mass Education, Government of Odisha",
+          "Page Name": "Department of School & Mass Education – Odisha",
+          URL: "https://sme.odisha.gov.in/ (sme.odisha.gov.in)",
+          "Primary Keywords (comma-separated)":
+            "elementary education, secondary education, teacher training, computer education, inclusive education",
+          "Two-sentence Summary":
+            "The Department of School & Mass Education in Odisha manages elementary and secondary schooling, teacher training and computer education programmes across the state. It serves students, teachers and school administrators with digital services, policy documents and admissions information.",
+          Language: "English, Odia",
+          "Last Updated": "—",
+          Notes: "State-level school education portal for Odisha.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Higher Education Department, Government of Odisha",
+          "Page Name": "Higher Education Department – Odisha",
+          URL: "https://dhe.odisha.gov.in/ (dhe.odisha.gov.in)",
+          "Primary Keywords (comma-separated)":
+            "higher education, university list, scholarships, admissions, research",
+          "Two-sentence Summary":
+            "Odisha’s Higher Education Department organises university policies, admissions, scholarships and infrastructure development for higher education in the state. It supports students, faculty and institutions with regulatory and developmental resources.",
+          Language: "English, Odia",
+          "Last Updated": "—",
+          Notes: "Complementary to school education dept; both state-level.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Department of School Education, Government of Punjab",
+          "Page Name": "Department of School Education – Punjab",
+          URL: "https://www.punjab.gov.in/government/departments/department-of-school-education/ (Punjab Government)",
+          "Primary Keywords (comma-separated)":
+            "primary education, secondary education, digital learning, teacher resources, e-services",
+          "Two-sentence Summary":
+            "The Punjab School Education Department oversees primary and secondary education across the state and provides digital services, teacher training and administrative tools for schools. It supports students, parents, teachers and schools with online systems and policy updates.",
+          Language: "English, Punjabi",
+          "Last Updated": "—",
+          Notes: "Official department page in Punjab; state-level.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Education Department, Government of Rajasthan",
+          "Page Name": "Education Department – Rajasthan",
+          URL: "http://www.education.rajasthan.gov.in/content/raj/education/en/home.html (Department of School Education)",
+          "Primary Keywords (comma-separated)":
+            "school education, curriculum, digital classrooms, teacher training, assessment",
+          "Two-sentence Summary":
+            "Rajasthan’s Education Department manages schooling policy, digital classroom implementation, curriculum and teacher professional development across the state. It offers resources and support for schools, students and educators.",
+          Language: "English, Hindi",
+          "Last Updated": "—",
+          Notes: "State-level portal for Rajasthan.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Ministry of Education & Literacy, Government of Tamil Nadu (School Education)",
+          "Page Name": "Education Department – Tamil Nadu",
+          URL: "http://tnschools.gov.in/",
+          "Primary Keywords (comma-separated)":
+            "school education, state board curriculum, assessments, student registration, teacher development",
+          "Two-sentence Summary":
+            "Tamil Nadu’s School Education Department provides oversight and resources for elementary to higher secondary education, including student registration portals, curriculum guidelines and teacher development programmes. It serves schools, administrators, students, and parents throughout the state.",
+          Language: "English, Tamil",
+          "Last Updated": "—",
+          Notes:
+            "State-specific portal for Tamil Nadu schooling (distinct from earlier national entry).",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Department of Education, Government of Bihar",
+          "Page Name": "Education Department - Bihar",
+          URL: "https://state.bihar.gov.in/educationbihar/ (Bihar State)",
+          "Primary Keywords (comma-separated)":
+            "primary education, secondary education, RTE, teacher training, infrastructure",
+          "Two-sentence Summary":
+            "The Bihar Education Department ensures access to free and quality primary and secondary education for children aged 6-14 and beyond, sets up policy frameworks and supports infrastructure improvements across the state. It serves students, teachers and administrators by publishing programmes, data and guidelines for inclusive education.",
+          Language: "English, Hindi",
+          "Last Updated": "—",
+          Notes: "Official department site of Bihar.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Department of Education (School & Secondary Education), Government of Assam",
+          "Page Name": "Home",
+          URL: "https://education.assam.gov.in/ (education.assam.gov.in)",
+          "Primary Keywords (comma-separated)":
+            "school education, RMSA, SEBA, AHSEC, non-formal education",
+          "Two-sentence Summary":
+            "Assam’s School & Secondary Education Department oversees secondary and higher secondary schooling including regulatory bodies like SEBA/AHSEC, non-formal & adult education, and implements state education programmes. The portal provides policy information, teacher resources and administrative links for students, schools and educators.",
+          Language: "English, Assamese",
+          "Last Updated": "—",
+          Notes: "State-level, Assam.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Directorate of Higher Education, Government of Assam",
+          "Page Name": "Assam State Higher Education Admission Portal",
+          URL: "https://assamadmission.samarth.ac.in/ (assamadm-le.samarth.ac.in)",
+          "Primary Keywords (comma-separated)":
+            "higher education admissions, universities, NEP 2020, e-governance, transparent admissions",
+          "Two-sentence Summary":
+            "The Directorate facilitates centralized higher-education admissions across Assam state universities under NEP-2020 framework, offering an online portal for UG applications and promoting digitisation of enrolment processes. It serves students, universities and policymakers in streamlining admissions and institutional data management.",
+          Language: "English, Assamese",
+          "Last Updated": "—",
+          Notes: "Higher education side for Assam.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Directorate of Education, Government of Goa",
+          "Page Name": "Directorate of Education – Goa",
+          URL: "https://education.goa.gov.in/ (education.goa.gov.in)",
+          "Primary Keywords (comma-separated)":
+            "school education, pre-primary, primary, secondary, regulation",
+          "Two-sentence Summary":
+            "The Directorate of Education, Goa, is responsible for the organisation, development and regulation of school education (pre-primary to higher secondary) in the state. It provides scheme information, circulars, school directory and resources for students, teachers and schools.",
+          Language: "English",
+          "Last Updated": "—",
+          Notes: "State-level government portal for school education in Goa.",
+        },
+        {
+          "Country/Region": "India",
+          "Government Level": "State",
+          "Agency/Department Name":
+            "Education Department (Human Resource Development Dept), Government of Sikkim",
+          "Page Name": "Education Department – Sikkim",
+          URL: "https://education.sikkim.gov.in/ (education.sikkim.gov.in)",
+          "Primary Keywords (comma-separated)":
+            "school education, teacher training, non-formal education, primary education, digital services",
+          "Two-sentence Summary":
+            "Sikkim’s Education Department handles school education, teacher training, non-formal education and digital initiatives in the state, offering circulars, notifications and resources for students, teachers and administrators.",
+          Language: "English",
+          "Last Updated": "—",
+          Notes:
+            "State-level portal for Sikkim, under the Human Resource Development Department.",
+        },
+      ];
+
+      let currentData = [...educationData];
+
+      function renderTable(data) {
+        const tableBody = document.getElementById("tableBody");
+        const noResults = document.getElementById("noResults");
+        const resultsCount = document.getElementById("resultsCount");
+
+        if (data.length === 0) {
+          tableBody.innerHTML = "";
+          noResults.style.display = "block";
+          resultsCount.textContent = "No results found";
+          return;
+        }
+
+        noResults.style.display = "none";
+        resultsCount.textContent = `Showing ${data.length} of ${educationData.length} records`;
+
+        tableBody.innerHTML = data
+          .map(
+            (item, index) => `
+                <tr>
+                    <td>${escapeHtml(item["Country/Region"])}</td>
+                    <td>
+                        <span class="status status--info">${escapeHtml(
+                          item["Government Level"]
+                        )}</span>
+                    </td>
+                    <td>${escapeHtml(item["Agency/Department Name"])}</td>
+                    <td>${escapeHtml(item["Page Name"])}</td>
+                    <td class="url-column">
+                        <a href="${escapeHtml(
+                          item["URL"]
+                        )}" target="_blank" class="url-link">
+                            ${escapeHtml(item["URL"])}
+                        </a>
+                    </td>
+                    <td class="keywords-column">${escapeHtml(
+                      item["Primary Keywords (comma-separated)"]
+                    )}</td>
+                    <td class="summary-column">
+                        <div class="expandable-text" id="summary-${index}">
+                            ${escapeHtml(item["Two-sentence Summary"])}
+                        </div>
+                        ${
+                          item["Two-sentence Summary"].length > 150
+                            ? `<button class="expand-btn" onclick="toggleExpand('summary-${index}', this)">Show more</button>`
+                            : ""
+                        }
+                    </td>
+                    <td>${escapeHtml(item["Language"])}</td>
+                    <td>${escapeHtml(item["Last Updated"])}</td>
+                    <td class="notes-column">
+                        <div class="expandable-text" id="notes-${index}">
+                            ${escapeHtml(item["Notes"])}
+                        </div>
+                        ${
+                          item["Notes"].length > 100
+                            ? `<button class="expand-btn" onclick="toggleExpand('notes-${index}', this)">Show more</button>`
+                            : ""
+                        }
+                    </td>
+                </tr>
+            `
+          )
+          .join("");
+      }
+
+      function escapeHtml(text) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      function toggleExpand(elementId, button) {
+        const element = document.getElementById(elementId);
+        const isExpanded = element.classList.contains("expanded");
+
+        if (isExpanded) {
+          element.classList.remove("expanded");
+          button.textContent = "Show more";
+        } else {
+          element.classList.add("expanded");
+          button.textContent = "Show less";
+        }
+      }
+
+      function searchData(query) {
+        if (!query.trim()) {
+          return [...educationData];
+        }
+
+        const searchTerm = query.toLowerCase();
+        return educationData.filter((item) => {
+          return Object.values(item).some((value) =>
+            value.toString().toLowerCase().includes(searchTerm)
+          );
+        });
+      }
+
+      function handleSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const query = searchInput.value;
+        currentData = searchData(query);
+        renderTable(currentData);
+      }
+
+      function clearSearch() {
+        const searchInput = document.getElementById("searchInput");
+        searchInput.value = "";
+        currentData = [...educationData];
+        renderTable(currentData);
+        searchInput.focus();
+      }
+
+      // Event listeners
+      document
+        .getElementById("searchInput")
+        .addEventListener("input", handleSearch);
+      document
+        .getElementById("searchInput")
+        .addEventListener("keyup", function (event) {
+          if (event.key === "Escape") {
+            clearSearch();
+          }
+        });
+
+      // Initialize the table
+      document.addEventListener("DOMContentLoaded", function () {
+        renderTable(currentData);
+      });
+    </script>
+  </body>
+</html>
